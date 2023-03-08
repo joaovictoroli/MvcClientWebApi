@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Projeto.BLL.Model.Friend>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>Actions</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var friend in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => friend.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => friend.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => friend.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => friend.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => friend.PhoneNumber)
+                </td>
+                <td>
+                    @friend.BirthDate.ToString("dd/M/yyyy")
+                </td>
+
+                <td>
+                    <a asp-action="Update" asp-route-id="@friend.Id">
+                        <img src="/icon/edit.png" height="16" width="16" />
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" value="@friend.Id" name="friendId" />
+                        <input type="image" height="16" width="16" src="/icon/close.ico" />
+                    </form>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table>
